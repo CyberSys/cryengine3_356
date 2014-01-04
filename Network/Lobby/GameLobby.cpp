@@ -6524,29 +6524,6 @@ void CGameLobby::SetCurrentLevelName(const char *pCurrentLevelName, bool preCach
 void CGameLobby::GameRulesChanged( const char *pGameRules )
 {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	if (gEnv->pGame->GetIGameFramework()->GetIGameRulesSystem()->HaveGameRules(pGameRules))
 	{
 		ICVar *pCVar = gEnv->pConsole->GetCVar("sv_gamerules");

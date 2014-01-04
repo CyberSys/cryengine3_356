@@ -113,6 +113,7 @@ const CGameAudio::SMPGameRulesThemeEntry CGameAudio::MPGameRulesThemes[] =
 	{ eGM_PowerStruggle, "spears"},									// at index eGM_PowerStruggle
 	{ eGM_Gladiator, "predator"},										// at index eGM_Gladiator
 	{ eGM_DeathMatch, "predator"},										// at index eGM_Gladiator
+	{ eGM_MyGameMode, ""},
 };
 
 #define MOODS_FILE "Libs/GameAudio/Moods.xml"

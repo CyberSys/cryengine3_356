@@ -32,6 +32,7 @@ class CActor;
 	f(eGM_PowerStruggle) \
 	f(eGM_Gladiator) \
 	f(eGM_DeathMatch) \
+	f(eGM_MyGameMode) \
 
 AUTOENUM_BUILDENUMWITHTYPE_WITHINVALID_WITHNUM(EGameMode, AEGameModeList, eGM_INVALID_GAMEMODE, eGM_NUM_GAMEMODES);
 AUTOENUM_BUILDFLAGS_WITHZERO_WITHBITSUFFIX(AEGameModeList, eGM_NULL_bit);

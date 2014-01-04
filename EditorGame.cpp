@@ -44,6 +44,8 @@ ICVar * CEditorGame::s_pEditorGameMode;
 CEditorGame * CEditorGame::s_pEditorGame = NULL;
 struct IGameStartup;
 
+
+#define CURRENT_GAME_RULES "MyGameMode"
 //------------------------------------------------------------------------
 CEditorGame::CEditorGame()
 {
@@ -718,7 +720,7 @@ void CEditorGame::FillSystemInitParams(SSystemInitParams &startupParams, ISystem
 
 const char * CEditorGame::GetGameRulesName()
 {
-	const char *pGameRulesName = "SinglePlayer";
+	const char *pGameRulesName = CURRENT_GAME_RULES;
 	if (s_pEditorGame->m_bUsingMultiplayerGameRules)
 	{
 		pGameRulesName = "TeamInstantAction";

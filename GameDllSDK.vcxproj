@@ -54,7 +54,7 @@
     <ProjectName>CryGameSDK</ProjectName>
     <ProjectGuid>{50065103-6F55-4BF6-9E91-E4D7A955C8FE}</ProjectGuid>
     <RootNamespace>CryGameSDK</RootNamespace>
-<Keyword>Win32Proj</Keyword>
+    <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Server Only|Win32'" Label="Configuration">
@@ -587,8 +587,10 @@
     <ClCompile Include="BodyDefinitions.cpp" />
     <ClCompile Include="CinematicWeapon.cpp" />
     <ClCompile Include="CornerSmoother.cpp" />
+    <ClCompile Include="Custom\TestActor.cpp" />
     <ClCompile Include="DataPatchDownloader.cpp" />
     <ClCompile Include="AI\AloneDetectorModule.cpp" />
+    <ClCompile Include="MyGameRules.cpp" />
     <ClCompile Include="DoubleMagazine.cpp" />
     <ClCompile Include="Effects\GameEffects\LightningGameEffect.cpp" />
     <ClCompile Include="Effects\GameEffects\ParameterGameEffect.cpp" />
@@ -1190,7 +1192,9 @@
     <ClInclude Include="BasicEventListener.h" />
     <ClInclude Include="CinematicWeapon.h" />
     <ClInclude Include="CornerSmoother.h" />
+    <ClInclude Include="Custom\TestActor.h" />
     <ClInclude Include="DataPatchDownloader.h" />
+    <ClInclude Include="MyGameRules.h" />
     <ClInclude Include="DoubleMagazine.h" />
     <ClInclude Include="Effects\GameEffectsSystemDefines.h" />
     <ClInclude Include="Effects\GameEffects\LightningGameEffect.h" />

@@ -136,7 +136,8 @@ bool CCVarsWhiteList::IsWhiteListed(const string& command, bool silent)
 	WHITELIST("g_skipIntro");
 	WHITELIST("hud_psychoPsycho");
 	WHITELIST("hud_hide");
-	WHITELIST("disconnect");
+	WHITELIST("
+		");
 
 	WHITELIST("hud_bobHud");
   WHITELIST("e_CoverageBufferReproj");

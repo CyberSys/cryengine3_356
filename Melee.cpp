@@ -785,7 +785,7 @@ int CMelee::Hit(const Vec3 &pt, const Vec3 &dir, const Vec3 &normal, IPhysicalEn
 			if(pTarget)
 			{
 				CGameRules *pGameRules = g_pGame->GetGameRules();
-				CRY_ASSERT_MESSAGE(pGameRules, "No game rules! Melee can not apply hit damage");
+				CRY_ASSERT_MESSAGE(pGameRules, "! Melee can not apply hit damage");
 
 				if (pGameRules)
 				{

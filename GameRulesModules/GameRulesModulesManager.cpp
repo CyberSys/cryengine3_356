@@ -17,7 +17,7 @@
 #include "GameRules.h"
 
 #define GAMERULES_DEFINITIONS_XML_PATH		"Scripts/GameRules/GameModes.xml"
-
+#define DEFAULT_GAMERULES_CLASS				"MyGameRules"
 //------------------------------------------------------------------------
 CGameRulesModulesManager* CGameRulesModulesManager::s_pInstance = NULL;
 
@@ -88,7 +88,7 @@ void CGameRulesModulesManager::Init()
 
 					if (modeXml->getAttr("name", &modeName))
 					{
-						pGameRulesSystem->RegisterGameRules(modeName, "GameRules");
+						pGameRulesSystem->RegisterGameRules(modeName, DEFAULT_GAMERULES_CLASS);
 
 						SGameRulesData gameRulesData;
 

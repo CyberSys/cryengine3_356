@@ -3949,7 +3949,20 @@ void CGame::GameChannelDestroyed(bool isServer)
 
 CGameRules *CGame::GetGameRules() const
 {
+	/*
+	IGameRulesSystem *pGRSystem = m_pFramework->GetIGameRulesSystem();
+	IGameRules* pGameRules = pGRSystem->GetCurrentGameRules();
+	if (pGameRules)
+	{
+		const char* className = pGameRules->GetEntity()->GetClass()->GetName();
+		if (strcmp(className, "TestGameMode") == 0)
+			return 0;
+		else
+			return static_cast<CGameRules *>(m_pFramework->GetIGameRulesSystem()->GetCurrentGameRules());
+	}
+	//GameWarning("current game rules %s", txt);*/
 	return static_cast<CGameRules *>(m_pFramework->GetIGameRulesSystem()->GetCurrentGameRules());
+	
 }
 
 bool CGame::IsLevelLoaded() const

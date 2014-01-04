@@ -142,6 +142,12 @@ History:
 
 #include "GameCVars.h"
 
+
+// custom
+#include "Custom/TestActor.h"
+//#include "TestGameRules.h"
+#include "MyGameRules.h"
+
 #define HIDE_FROM_EDITOR(className)																																				\
   { IEntityClass *pItemClass = gEnv->pEntitySystem->GetClassRegistry()->FindClass(className);\
   pItemClass->SetFlags(pItemClass->GetFlags() | ECLF_INVISIBLE); }																				\
@@ -217,7 +223,10 @@ struct C##name##Creator : public IGameObjectExtensionCreatorBase\
 void InitGameFactory(IGameFramework *pFramework)
 {
 	assert(pFramework);
+	REGISTER_FACTORY(pFramework, "TestActor", CTestActor, false);
 
+	REGISTER_FACTORY(pFramework, "MyGameRules", CMyGameRules, false);
+	gEnv->pGame->GetIGameFramework()->GetIGameRulesSystem()->RegisterGameRules("MyGameMode", "MyGameRules");
 	REGISTER_FACTORY(pFramework, "Player", CPlayer, false);
 	REGISTER_FACTORY(pFramework, "PlayerHeavy", CPlayer, false);
 	

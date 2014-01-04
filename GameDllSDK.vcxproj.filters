@@ -295,6 +295,9 @@
     <Filter Include="Actor Files\Player\PlayerStates\Movement">
       <UniqueIdentifier>{c5830aad-b935-47fb-8937-618ea5d4fae0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Custom">
+      <UniqueIdentifier>{d4ebb237-0760-42ee-adf1-7e4db9eea5ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BasicEventListener.cpp">
@@ -2008,6 +2011,12 @@
     </ClCompile>
     <ClCompile Include="PlayerStateAnimationControlled.cpp">
       <Filter>Actor Files\Player\PlayerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Custom\TestActor.cpp">
+      <Filter>Custom</Filter>
+    </ClCompile>
+    <ClCompile Include="MyGameRules.cpp">
+      <Filter>Custom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3806,6 +3815,12 @@
     </ClInclude>
     <ClInclude Include="Environment\TowerSearchLight.h">
       <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Custom\TestActor.h">
+      <Filter>Custom</Filter>
+    </ClInclude>
+    <ClInclude Include="MyGameRules.h">
+      <Filter>Custom</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

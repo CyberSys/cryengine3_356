@@ -1770,7 +1770,8 @@ void CGameRules::ProcessEvent( SEntityEvent& event)
 
 		SetupForbiddenAreaShapesHelpers();
 
-		GetSpawningModule()->OnStartGame();
+		if (GetSpawningModule())
+			GetSpawningModule()->OnStartGame();
 
 
 		if (GetObjectivesModule())
@@ -2606,7 +2607,6 @@ bool CGameRules::OnClientConnect(int channelId, bool isReset)
 	{
 		pServerCheatMonitor->OnClientConnect(channelId);
 	}
-
 	return pActor != 0;
 }
 
@@ -3404,8 +3404,12 @@ void CGameRules::RevivePlayerMP(IActor *pActor, IEntity *pSpawnPoint, int teamId
 	CActor *pCActor = static_cast<CActor*>(pActor);
 	const Matrix34& rWorldTM = pSpawnPoint->GetWorldTM();
 	RevivePlayer(pActor, rWorldTM.GetTranslation(), Ang3::GetAnglesXYZ(rWorldTM), teamId, modelIndex, clearInventory);
+	int index = 0;
+	if (GetSpawningModule())
+	{
 	GetSpawningModule()->SetLastSpawn(pActor->GetEntityId(), spawnPointId);
-	int index = GetSpawningModule()->GetSpawnIndexForEntityId(spawnPointId);
+	index = GetSpawningModule()->GetSpawnIndexForEntityId(spawnPointId);
+	}
 	CryLog("CGameRules::RevivePlayerMP() spawning at eid=%d, '%s' spawn index %d, position (%.3f, %.3f, %.3f)", spawnPointId, pSpawnPoint->GetName(), index, rWorldTM.GetTranslation().x, rWorldTM.GetTranslation().y, rWorldTM.GetTranslation().z);
 	pActor->GetGameObject()->InvokeRMI(CActor::ClRevive(), CActor::ReviveParams(teamId, index, pCActor->GetNetPhysCounter(), modelIndex), eRMI_ToAllClients|eRMI_NoLocalCalls);
 
@@ -5329,7 +5333,7 @@ int CGameRules::GetHitTypeId(const char *type) const
 	}
 
 #ifdef _DEBUG
-	CRY_ASSERT_TRACE(!s_dbgAssertOnFailureToFindHitType, ("\"%s\" is not one of the %d registered hit types! Please register it in Scripts/Entities/Items/HitTypes.xml file or GameRulesMPDamageHandling.cpp", type, m_hitTypes.size()));
+	//CRY_ASSERT_TRACE(!s_dbgAssertOnFailureToFindHitType, ("\"%s\" is not one of the %d registered hit types! Please register it in Scripts/Entities/Items/HitTypes.xml file or GameRulesMPDamageHandling.cpp", type, m_hitTypes.size()));
 #endif
 
 	return 0;
@@ -8998,6 +9002,7 @@ uint8 CGameRules::GetRequiredPlayerTypesForGameMode()
 		case eGM_CrashSite:
 		case eGM_PowerStruggle:
 		case eGM_Extraction:
+		case eGM_MyGameMode:
 			requiredPlayerTypes |= k_rptfgm_marines;
 			break;
 		case eGM_Assault:
@@ -9047,6 +9052,7 @@ uint8 CGameRules::GetRequiredPlayerTypeForConversation(int speakingActorTeamId, 
 		case eGM_CrashSite:
 		case eGM_PowerStruggle:
 		case eGM_Extraction:
+		case eGM_MyGameMode:
 			if (speakerAndListenerAreFriends)
 			{
 				conversationPlayerType = k_rptfgm_standard;

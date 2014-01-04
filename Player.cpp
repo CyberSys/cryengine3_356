@@ -742,7 +742,7 @@ bool CPlayer::Init(IGameObject * pGameObject)
 		{
 			spawningModule->PlayerJoined(entityId);
 		}
-		CRY_ASSERT_MESSAGE(spawningModule, "CPlayer::Init() failed to find required gamerules spawning module");
+		//CRY_ASSERT_MESSAGE(spawningModule, "CPlayer::Init() failed to find required gamerules spawning module");
 
 		IGameRulesVictoryConditionsModule *pVictoryConditions = pGameRules->GetVictoryConditionsModule();
 		if (pVictoryConditions && IsPlayer())

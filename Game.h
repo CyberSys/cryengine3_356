@@ -765,6 +765,7 @@ protected:
 	static void CmdReloadItems(IConsoleCmdArgs *pArgs);
 	static void CmdLoadActionmap(IConsoleCmdArgs *pArgs);
   static void CmdReloadGameRules(IConsoleCmdArgs *pArgs);
+  static void CmdSetGameRules(IConsoleCmdArgs *pArgs);
   static void CmdNextLevel(IConsoleCmdArgs* pArgs);
 	static void CmdReloadHitDeathReactions(IConsoleCmdArgs* pArgs);
 	static void CmdDumpHitDeathReactionsAssetUsage(IConsoleCmdArgs* pArgs);

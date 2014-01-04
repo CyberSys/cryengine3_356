@@ -3208,6 +3208,7 @@ void CGame::RegisterConsoleCommands()
 #endif
 
 	REGISTER_COMMAND( "g_reloadGameFx", CmdReloadGameFx, 0, "Reload all game fx");
+	REGISTER_COMMAND("setGameRules", CmdSetGameRules, 0, "Set GameRules script");
 
 	CBodyManagerCVars::RegisterCommands();
 	
@@ -3812,6 +3813,33 @@ void CGame::CmdReloadGameRules(IConsoleCmdArgs *pArgs)
 		else
 			GameWarning("reloading GameRules <%s> failed!", name);
 	}  
+}
+
+void CGame::CmdSetGameRules(IConsoleCmdArgs* pArgs)
+{
+	if (gEnv->bMultiplayer)
+		return;
+
+	IGameRulesSystem* pGameRulesSystem = g_pGame->GetIGameFramework()->GetIGameRulesSystem();
+	//IGameRules* pGameRules = pGameRulesSystem->GetCurrentGameRules();
+
+	const char* name = pArgs->GetArg(1);
+	CryLogAlways("SetGameRules: %s ", name);
+
+	if (pGameRulesSystem->HaveGameRules(name))
+	{
+		pGameRulesSystem->DestroyGameRules();
+		ICVar* var = gEnv->pConsole->GetCVar("sv_gamerules");
+		if (pGameRulesSystem->CreateGameRules(name))
+		{
+			var->Set(name);
+			CryLog("Created new game rules");
+		}
+		else
+			GameWarning("Failed to create new game rules");
+	}
+	else 
+		GameWarning("Doesnt have that gamerules");
 }
 
 //------------------------------------------------------------------------
