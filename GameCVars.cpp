@@ -3209,6 +3209,7 @@ void CGame::RegisterConsoleCommands()
 
 	REGISTER_COMMAND( "g_reloadGameFx", CmdReloadGameFx, 0, "Reload all game fx");
 	REGISTER_COMMAND("setGameRules", CmdSetGameRules, 0, "Set GameRules script");
+	REGISTER_COMMAND("Spawn", CmdSpawn, 0, "Set GameRules script");
 
 	CBodyManagerCVars::RegisterCommands();
 	
@@ -3283,6 +3284,8 @@ void CGame::UnregisterConsoleCommands()
 	// variables from CHUDCommon
 	m_pConsole->RemoveCommand("ShowGODMode");
 	m_pConsole->RemoveCommand("reloadUI");
+	m_pConsole->RemoveCommand("setGameRules");
+	m_pConsole->RemoveCommand("Spawn");
 
 	CBodyManagerCVars::UnregisterCommands(m_pConsole);
 	
@@ -3840,6 +3843,31 @@ void CGame::CmdSetGameRules(IConsoleCmdArgs* pArgs)
 	}
 	else 
 		GameWarning("Doesnt have that gamerules");
+}
+
+void CGame::CmdSpawn(IConsoleCmdArgs* pArgs)
+{
+	const char* entityClassName = pArgs->GetArg(1);
+
+	if (entityClassName)
+	{
+		if (IEntityClass* pEntityClass = gEnv->pEntitySystem->GetClassRegistry()->FindClass(entityClassName))
+		{
+			const CCamera& pCam = gEnv->pRenderer->GetCamera();
+			Vec3 pos = pCam.GetPosition();
+
+			SEntitySpawnParams params;
+			params.pClass = pEntityClass;
+			params.vPosition = pos;
+			IEntity* pEntity = gEnv->pEntitySystem->SpawnEntity(params, true);
+			CryLogAlways("CmdSpawn: spawned Entity: %s", pEntity ? "true" : "false");
+		}
+		else
+			GameWarning("CmdSpawn: Entity class not found in registry");
+	}
+	else
+		GameWarning("CmdSpawn: no Entity class name in parameter 1");
+	
 }
 
 //------------------------------------------------------------------------

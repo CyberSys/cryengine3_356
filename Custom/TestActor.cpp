@@ -24,6 +24,11 @@ bool CTestActor::Init( IGameObject * pGameObject )
 	return true;
 }
 
+void CTestActor::Reset(bool bToGame)
+{
+
+}
+
 void CTestActor::PostInit( IGameObject * pGameObject )
 {
 }

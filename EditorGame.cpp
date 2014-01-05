@@ -33,10 +33,11 @@
 #include "ICommunicationManager.h"
 #include "Turret/Turret/Turret.h"
 #include "Environment/DoorPanel.h"
-
 #include <IForceFeedbackSystem.h>
 
 #include "Environment/LedgeManager.h"
+
+#include "Custom/TestActor.h"
 
 #define EDITOR_SERVER_PORT 0xed17
 
@@ -46,6 +47,8 @@ struct IGameStartup;
 
 
 #define CURRENT_GAME_RULES "MyGameMode"
+#define PLAYER_CLASS		"TestActor"
+
 //------------------------------------------------------------------------
 CEditorGame::CEditorGame()
 {
@@ -75,7 +78,7 @@ void CEditorGame::ResetClient(IConsoleCmdArgs*)
 	bool value = s_pEditorGame->m_bPlayer;
 	s_pEditorGame->EnablePlayer(false);
 
-	IEntityClass *pClass = gEnv->pEntitySystem->GetClassRegistry()->FindClass("Player");
+	IEntityClass *pClass = gEnv->pEntitySystem->GetClassRegistry()->FindClass(PLAYER_CLASS);
 	if (pClass)	pClass->LoadScript(true);
 
 	if (value)
@@ -98,7 +101,7 @@ void CEditorGame::ToggleMultiplayerGameRules()
 
 	s_pEditorGame->ConfigureNetContext(true);
 
-	IEntityClass *pClass = gEnv->pEntitySystem->GetClassRegistry()->FindClass("Player");
+	IEntityClass *pClass = gEnv->pEntitySystem->GetClassRegistry()->FindClass(PLAYER_CLASS);
 	if (pClass)
 	{
 		pClass->LoadScript(true);
@@ -253,6 +256,10 @@ bool CEditorGame::SetGameMode(bool bGameMode)
 			{
 				pActor->Reset(true);
 			}
+		}
+		else if (CTestActor* pTestActor = static_cast<CTestActor*>(m_pGame->GetIGameFramework()->GetClientActor()))
+		{
+			pTestActor->Reset(true);
 		}
 	}
 	else

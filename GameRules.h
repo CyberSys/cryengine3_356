@@ -466,6 +466,7 @@ public:
 		bool InUse() { return m_inUse; }
 	};
 
+	friend class MyGameRules;
 	CGameRules();
 	virtual ~CGameRules();
 	//IGameObjectExtension

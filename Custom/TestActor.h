@@ -11,6 +11,11 @@ public:
 	CTestActor();
 	virtual ~CTestActor();
 
+
+	// CTestActor
+	virtual void Reset(bool bToGame);
+	
+	// IGameObject
 	virtual bool Init( IGameObject * pGameObject );
 	virtual void PostInit( IGameObject * pGameObject );
 	virtual void InitClient(int channelId);
